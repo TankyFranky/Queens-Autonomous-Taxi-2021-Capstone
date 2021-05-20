@@ -1,0 +1,177 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <!-- We use a custom world for the rrbot so that the camera angle is launched correctly -->
+
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Focus camera on vehicle -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>4.927360 -4.376610 3.740080 0.000000 0.275643 2.356190</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+    <!-- building a testing ground -->
+    <model name='section_1'>
+      <pose>0 0 0 0 0 0</pose>
+      <static>true</static>
+        <link name="link1">
+          <pose>5 4 0 0 0 0</pose>
+          <collision name="collision1">
+          	<geometry>
+          	  <box>
+          	    <size>8 8 3</size>
+          	  </box>
+          	</geometry>
+          </collision>
+          <visual name="link1">
+          	<geometry>
+          	  <box>
+          	    <size>8 8 3</size>
+          	  </box>
+          	</geometry>
+          </visual>
+        </link>
+
+        <link name="link2">
+          <pose>-7 4 0 0 0 0</pose>
+          <collision name="collision2">
+            <geometry>
+              <box>
+                <size>8 8 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link2">
+            <geometry>
+              <box>
+                <size>8 8 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+
+        <link name="link3">
+          <pose>5 -8 0 0 0 0</pose>
+          <collision name="collision3">
+            <geometry>
+              <box>
+                <size>8 8 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link3">
+            <geometry>
+              <box>
+                <size>8 8 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+
+        <link name="link4">
+          <pose>-7 -8 0 0 0 0</pose>
+          <collision name="collision4">
+            <geometry>
+              <box>
+                <size>8 8 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link4">
+            <geometry>
+              <box>
+                <size>8 8 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+     </model>
+
+<model name='section_2'>
+      <pose>0 0 0 0 0 0</pose>
+      <static>true</static>
+        <link name="link1">
+          <pose>13 -2 0 0 0 0</pose>
+          <collision name="collision1">
+            <geometry>
+              <box>
+                <size>0.5 28 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link1">
+            <geometry>
+              <box>
+                <size>0.5 28 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+        
+        <link name="link2">
+          <pose>-15 -2 0 0 0 0</pose>
+          <collision name="collision2">
+            <geometry>
+              <box>
+                <size>0.5 28 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link2">
+            <geometry>
+              <box>
+                <size>0.5 28 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+
+        <link name="link3">
+          <pose>-1 -15.75 0 0 0 0</pose>
+          <collision name="collision3">
+            <geometry>
+              <box>
+                <size>27.5 0.5 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link3">
+            <geometry>
+              <box>
+                <size>27.5 0.5 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+
+        <link name="link4">
+          <pose>-1 11.75 0 0 0 0</pose>
+          <collision name="collision4">
+            <geometry>
+              <box>
+                <size>27.5 0.5 3</size>
+              </box>
+            </geometry>
+          </collision>
+          <visual name="link4">
+            <geometry>
+              <box>
+                <size>27.5 0.5 3</size>
+              </box>
+            </geometry>
+          </visual>
+        </link>
+      </model>
+
+  </world>
+</sdf>

@@ -1,0 +1,32 @@
+<launch>
+    <node pkg="arduino_commander" name="arduino_commander" type="arduino_commander_node">	
+    </node>
+
+    <node name="controller" pkg="pid" type="controller" ns="steering" output="screen" >
+      <param name="node_name" value="steering_pid" />
+      <param name="Kp" value="100" />
+      <param name="Ki" value="1" />
+      <param name="Kd" value="10" />
+      <param name="upper_limit" value="72" />
+      <param name="lower_limit" value="-72" />
+      <param name="windup_limit" value="57" />
+      <param name="max_loop_frequency" value="50.0" />
+      <param name="min_loop_frequency" value="50.0" />
+      <remap from="steering/setpoint" to="/setpoint" />
+     </node>
+
+    <node name="controller" pkg="pid" type="controller" ns="drive" output="screen" >
+      <param name="node_name" value="drive_pid" />
+      <param name="Kp" value="80" />
+      <param name="Ki" value="0.8" />
+      <param name="Kd" value=".4" />
+      <param name="upper_limit" value="50" />
+      <param name="lower_limit" value="-30" />
+      <param name="windup_limit" value="0" />
+      <param name="max_loop_frequency" value="100.0" />
+      <param name="min_loop_frequency" value="100.0" />
+      <param name="cutoff_frequency" value="0.3" />
+      <remap from="drive/setpoint" to="/setpoint" />
+     </node>
+</launch>
+ 

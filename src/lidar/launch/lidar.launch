@@ -1,0 +1,16 @@
+<launch>
+
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+		<param name="port" value="9090"/>
+	</include>
+
+	<node name="file_server" pkg="file_server" type="file_server" output="screen"/>
+
+	<node name="lidar_scan" pkg="lidar" type="read_lidar.py" output="screen"/>
+	
+	<node name="lidar_obsav" pkg="lidar" type="obstacle_avoidance.py" output="screen"/>
+
+	<node name="rqt_graph" pkg="rqt_graph" type="rqt_graph" output="screen" />
+
+
+</launch>

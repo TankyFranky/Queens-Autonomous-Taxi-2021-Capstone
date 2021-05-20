@@ -1,0 +1,5 @@
+classes = 7
+train = data / train_network2.txt
+valid = data / test_network2.txt
+names = data / obj_networkV2.names
+backup = backup / 

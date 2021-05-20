@@ -1,0 +1,17 @@
+<launch>
+    <!--roslaunch package_name launch_file--> >
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+		<param name="port" value="9090"/>
+	</include>
+
+	<node name="file_server" pkg="file_server" type="file_server" output="screen"/>
+
+	<node name="binocular_p3" pkg="binocular_p3" type="binocular_measuring_cv.py" output="screen"/>
+
+	<node name="decompress_left" type="republish" pkg="image_transport" output="screen" args="compressed in:=/binocular_cv/left raw out:=/binocular_cv/left/normal" />
+
+	<node name="decompress_right" type="republish" pkg="image_transport" output="screen" args="compressed in:=/binocular_cv/right raw out:=/binocular_cv/right/normal" />
+
+	<node name="rqt_graph" pkg="rqt_graph" type="rqt_graph" output="screen" />
+
+</launch>

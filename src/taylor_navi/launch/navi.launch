@@ -1,0 +1,11 @@
+<launch>>
+
+  <arg name="host" default="169.254.64.20" />
+  <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
+    <param name="host" value="$(arg host)" />
+  </node>  
+
+  <node name="encoders" pkg="us_digital_encoders" type="taylor_dunn_node.py" />
+  <node name="talker" pkg="taylor_navi" type="user_input.py" />
+  <node name="reading_laser" pkg="taylor_navi" type="follow_wall_real.py" />
+</launch>

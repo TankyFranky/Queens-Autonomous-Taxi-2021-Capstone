@@ -1,0 +1,10 @@
+This module uses ros_control and gazebo to run a simulation of the vehicle. 
+See Gazebo + ros_control foumentation at http://gazebosim.org/tutorials/?tut=ros_control 
+
+Commands to run the simulation:
+roslaunch car_test_gazebo car_test.launch
+roslaunch car_test_control car_test_control.launch
+
+Commands to drive the car:
+rostopic pub -1 /car_test/steering_controller/command std_msgs/Float64 "data: 45" (data is angle in degrees)
+rostopic pub -1 /car_test/throttle_controller/command std_msgs/Float64 "data: 3"  (data is speed in m/s)

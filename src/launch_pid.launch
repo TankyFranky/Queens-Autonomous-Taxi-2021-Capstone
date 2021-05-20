@@ -1,0 +1,33 @@
+<launch>
+    <node pkg="motion_control" name="setpoint" type="setpoint.py">	
+    </node>
+    <node pkg="arduino_commander" name="ardunio_commander" type="ardunio_commander_node">	
+    </node>
+
+    <node name="controller" pkg="pid" type="controller" ns="steering" output="screen" >
+      <param name="node_name" value="steering_pid" />
+      <param name="Kp" value="1" />
+      <param name="Ki" value="1" />
+      <param name="Kd" value="1" />
+      <param name="upper_limit" value="77" />
+      <param name="lower_limit" value="-77" />
+      <param name="windup_limit" value="10" />
+      <param name="max_loop_frequency" value="100.0" />
+      <param name="min_loop_frequency" value="100.0" />
+      <remap from="setpoint" to="steering/setpoint" />
+     </node>
+
+    <node name="controller" pkg="pid" type="controller" ns="drive" output="screen" >
+      <param name="node_name" value="drive_pid" />
+      <param name="Kp" value="1" />
+      <param name="Ki" value="1" />
+      <param name="Kd" value="1" />
+      <param name="upper_limit" value="30" />
+      <param name="lower_limit" value="-30" />
+      <param name="windup_limit" value="10" />
+      <param name="max_loop_frequency" value="100.0" />
+      <param name="min_loop_frequency" value="100.0" />
+      <remap from="setpoint" to="drive/setpoint" />
+     </node>
+</launch>
+ 

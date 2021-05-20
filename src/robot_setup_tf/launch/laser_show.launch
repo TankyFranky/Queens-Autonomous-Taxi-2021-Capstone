@@ -1,0 +1,13 @@
+<launch>
+  <arg name="joy_config" default="atk3" />
+
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="1 0 0 0 0 0 1 link1_parent link1 100" />
+
+  <node pkg="robot_setup_tf" type="tf_broadcaster" name="tf_broadcaster" />
+  <node pkg="robot_setup_tf" type="tf_listener" name="tf_listener" />
+
+  <node pkg="lms1xx" type="LMS1xx_node" name="laser" />
+
+
+
+</launch>

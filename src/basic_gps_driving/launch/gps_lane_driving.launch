@@ -1,0 +1,25 @@
+<launch>
+    <!--roslaunch package_name launch_file--> >
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+		<param name="port" value="9090"/>
+	</include>
+
+	<node name="file_server" pkg="file_server" type="file_server" output="screen"/>
+
+	<!--<node name="mouse_to_joy" pkg="unity_simulation_scene" type="mouse_to_joy.py" output="screen"/>-->
+
+	<!-- <node name="read_gps" pkg="basic_gps_driving" type="gps_read.py" output="screen"/> -->
+
+	<node name="input_gps" pkg="basic_gps_driving" type="get_gps.py" output="screen"/>
+
+    <!-- <node name="mouse_to_joy" pkg="unity_simulation_scene" type="mouse_to_joy.py" output="screen"/> -->
+
+    <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/binocular_cv/left raw out:=/unity_image/normal" />
+
+	<node name="lane_detection" pkg="basic_gps_driving" type="lane_identification.py" output="screen"/>
+
+	<node name="gps_lane_drive" pkg="basic_gps_driving" type="gps_lane.py" output="screen"/>
+
+	<node name="rqt_graph" pkg="rqt_graph" type="rqt_graph" output="screen" />
+
+</launch>

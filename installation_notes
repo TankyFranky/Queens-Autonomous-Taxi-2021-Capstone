@@ -1,0 +1,22 @@
+sudo apt install python3-pip
+pip3 install numpy
+
+update version of pip
+pip3 install --upgrade pip
+
+pip3 install -U rospkg
+
+Warning happens about adding a path to PATH
+export PATH="path_it_mad_about:$PATH"
+
+
+pip3 install opencv-contrib-python
+
+https://stackoverflow.com/questions/49221565/unable-to-use-cv-bridge-with-ros-kinetic-and-python3
+
+Things to change in the stack overflow
+
+catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so
+
+apt-cache show ros-melodic-cv-bridge | grep Version
+

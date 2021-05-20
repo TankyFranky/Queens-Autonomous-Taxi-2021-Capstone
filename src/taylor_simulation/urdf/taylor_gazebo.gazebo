@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<robot>
+
+	<!-- ros_control plugin -->
+	<gazebo>
+    	<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+			<robotNamespace>/taylor</robotNamespace>
+			<robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    	</plugin>
+	</gazebo>
+<!--
+  <gazebo>
+    <plugin name="tricycle_drive_controller" filename="libtricycle_drive_controller.so">
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <robotNamespace>taylor</robotNamespace>
+      <publishWheelTF>false</publishWheelTF>
+      <publishWheelJointState>true</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <steeringJoint>front_joint</steeringJoint>
+      <actuatedWheelJoint>front_axel_joint</actuatedWheelJoint>
+      <encoderWheelLeftJoint>rear_axel_joint</encoderWheelLeftJoint>
+      <encoderWheelRightJoint>rear_axel_joint</encoderWheelRightJoint> 
+      <actuatedWheelDiameter>0.408</actuatedWheelDiameter>
+      <encoderWheelDiameter>0.408</encoderWheelDiameter>
+      <encoderWheelSeparation>0.01</encoderWheelSeparation>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometrySource>encoder</odometrySource>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <updateRate>10.0</updateRate>
+      <wheelAcceleration>1.8</wheelAcceleration>
+      <wheelDeceleration>5.0</wheelDeceleration>
+      <wheelSpeedTolerance>0.05</wheelSpeedTolerance>
+      <wheelTorque>50</wheelTorque>
+      <steeringSpeed>0.4</steeringSpeed>
+      <steeringAngleTolerance>0.02</steeringAngleTolerance>
+    </plugin>
+  </gazebo>
+-->
+
+<gazebo>
+<plugin name="set_speed_joint_plugin" filename="libset_speed_joint_plugin.so">
+  <namespace_model>taylor</namespace_model>
+  <activate_pid_control>yes</activate_pid_control>                
+  <wheel_kp>0.1</wheel_kp>
+  <wheel_ki>0.0</wheel_ki>
+  <wheel_kd>0.0</wheel_kd>
+</plugin>
+</gazebo>
+
+  <!-- materials -->
+	<gazebo reference="base_link">
+		<material>Gazebo/White</material>
+	</gazebo>
+
+	<gazebo reference="car_body">
+		<material>Gazebo/Grey</material>
+	</gazebo>
+
+    <gazebo reference="motor_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+	<gazebo reference="front_link">
+		<material>Gazebo/Red</material>
+	</gazebo>
+
+    <gazebo reference="front_axel_link">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+	<gazebo reference="rear_link">
+		<material>Gazebo/Red</material>
+	</gazebo>
+
+    <gazebo reference="rear_axel_link">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="front_left_wheel_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="front_right_wheel_link">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <gazebo reference="rear_left_wheel_link">
+        <material>Gazebo/Grey</material>
+    </gazebo> 
+
+   <gazebo reference="rear_right_wheel_link">
+        <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="left_spin_link">
+        <material>Gazebo/Red</material>
+   </gazebo>
+
+   <gazebo reference="right_spin_link">
+        <material>Gazebo/Green</material>
+   </gazebo>
+
+   <gazebo reference="lidar_link">
+    <sensor type="ray" name="lidar_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>25</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>541</samples>
+            <resolution>1</resolution>
+            <min_angle>-2.35619</min_angle>
+            <max_angle>2.35619</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.50</min>
+          <max>20.0</max>
+          <resolution>0.012</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/taylor/laserscan</topicName>
+        <frameName>sensor_laser</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+</robot>
+

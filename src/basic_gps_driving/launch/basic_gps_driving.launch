@@ -1,0 +1,23 @@
+<launch>
+    <!--roslaunch package_name launch_file--> >
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+		<param name="port" value="9090"/>
+	</include>
+
+	<node name="file_server" pkg="file_server" type="file_server" output="screen"/>
+
+	<!--<node name="mouse_to_joy" pkg="unity_simulation_scene" type="mouse_to_joy.py" output="screen"/>-->
+
+	
+	<!--<node name="talker" pkg="unity_simulation_scene" type="user_input.py" output="screen"/>-->
+    <!--<node pkg=”…” type=”…” name=”…” respawn=true ns=”…”/>-->
+    <!--a node as a sub-part of your robotics application-->
+    <!--packages contains nodes which performs a process with a script -->
+
+	<node name="read_gps" pkg="basic_gps_driving" type="gps_read.py" output="screen"/>
+
+	<node name="input_gps" pkg="basic_gps_driving" type="get_gps.py" output="screen"/>
+
+	<node name="rqt_graph" pkg="rqt_graph" type="rqt_graph" output="screen" />
+
+</launch>

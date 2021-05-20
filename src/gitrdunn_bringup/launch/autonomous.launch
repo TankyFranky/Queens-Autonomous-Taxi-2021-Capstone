@@ -1,0 +1,28 @@
+<launch>
+  <arg name="joy_config" default="atk3" />
+  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="config_filepath" default="$(find teleop_twist_joy)/config/$(arg joy_config).config.yaml" />
+
+  <node name="range" pkg="rosserial_python" type="serial_node.py">
+     <param name="port" value="/dev/ttyACM0"/>
+     <param name="baud" value="57600" />
+  </node>
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+     <param name="port" value="/dev/ttyUSB1"/>
+     <param name="baud" value="57600" />
+  </node>
+
+  <arg name="host" default="169.254.64.20" />
+  <node pkg="lms1xx" name="lms1xx" type="LMS1xx_node">
+    <param name="host" value="$(arg host)" />
+  </node>  
+
+  <node pkg="tf" type="static_transform_publisher" name="map_baselink_broadcaster" args="0 0 0 0 0 0 map base_link 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="baselink_laser_broadcaster" args="0 0 0 0 0 0 base_link laser 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="baselink_ultrasound_broadcaster" args="-2.2 0 0 3.14 0 0 base_link ultrasound 100"/>
+ 
+
+  <include file="$(find hector_mapping)/launch/mapping_default.launch"/>
+
+  <node name="encoders" pkg="us_digital_encoders" type="encoder_processing.py" /> 
+</launch>
